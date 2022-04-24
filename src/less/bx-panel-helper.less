@@ -1,5 +1,7 @@
 :root {
     --bx-panel-helper-toggle-color: #e74c3c;
+    --bx-panel-helper-toggle-bg-color-from: fade(#e74c3c, 15);
+    --bx-panel-helper-toggle-bg-color-to: fade(#e74c3c, 30);
 }
 
 #bx-panel-back {
@@ -26,7 +28,11 @@
         height: 100%;
         text-decoration: none;
         -webkit-tap-highlight-color: transparent;
-        background: linear-gradient(to left, fade(@toggleColor, 15) 0%, fade(@toggleColor, 30) 100%) !important;
+        background: linear-gradient(
+                to left,
+                var(--bx-panel-helper-toggle-bg-color-from) 0%,
+                var(--bx-panel-helper-toggle-bg-color-to) 100%
+        ) !important;
         border-radius: 0 6px 6px 0;
         color: @toggleColor;
 

@@ -1,0 +1,30 @@
+{
+  "name": "@chkhanu/bx-panel-helper",
+  "version": "0.0.1",
+  "description": "Panel helper for bitrix",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "npm run build",
+    "version": "git add -A src",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chkhanu/bx-panel-helper.git"
+  },
+  "author": "chkhanu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chkhanu/bx-panel-helper/issues"
+  },
+  "homepage": "https://github.com/chkhanu/bx-panel-helper#readme",
+  "devDependencies": {
+    "typescript": "^4.6.3"
+  },
+  "files" : [
+    "dist/**/*"
+  ]
+}

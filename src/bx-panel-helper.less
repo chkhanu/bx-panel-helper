@@ -1,0 +1,100 @@
+:root {
+    --bx-panel-helper-toggle-color: #e74c3c;
+}
+
+#bx-panel-back {
+    display: none !important;
+}
+
+#bx-panel {
+    @panelHeight: 147px;
+    @foldedPanelHeight: 39px;
+    @toggleColor: var(--bx-panel-helper-toggle-color);
+    @transitTime: .3s;
+
+    margin-top: -@panelHeight !important;
+    transform: translate(-100%, @panelHeight);
+    visibility: hidden !important;
+
+    .bx-panel-helper__toggle {
+        z-index: 996;
+        position: absolute!important;
+        display: block!important;
+        left: 100%;
+        top: 0;
+        width: 32px;
+        height: 100%;
+        text-decoration: none;
+        -webkit-tap-highlight-color: transparent;
+        background: linear-gradient(to left, fade(@toggleColor, 15) 0%, fade(@toggleColor, 30) 100%) !important;
+        border-radius: 0 6px 6px 0;
+        color: @toggleColor;
+
+        &--right {
+            display: none;
+            left: auto;
+            right: 0;
+        }
+
+        &:before {
+            position: absolute;
+            display: block;
+            content: '\00BB';
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    &.bx-panel-folded {
+        margin-top: -@foldedPanelHeight!important;
+        transform: translate(-100%, @foldedPanelHeight);
+    }
+
+    &:not(.bx-panel-folded):not(.bx-panel-helper--visible) {
+        .bx-panel-helper__toggle {
+            height: @foldedPanelHeight;
+        }
+    }
+
+    &.bx-panel-helper--visible {
+        transform: translate(0, @panelHeight);
+        visibility: visible !important;
+
+        &.bx-panel-folded {
+            transform: translate(0, @foldedPanelHeight);
+        }
+
+        .bx-panel-helper__toggle {
+            left: 0;
+            width: 24px;
+
+            &--right {
+                display: block;
+                left: auto;
+                right: 0;
+                width: 16px;
+            }
+
+            &:before {
+                transform: translate(-50%, -50%) scaleX(-1);
+            }
+        }
+    }
+
+    &.bx-panel-helper--transit {
+        transition: transform @transitTime, visibility step-end;
+
+        &.bx-panel-helper--visible {
+            transition: transform @transitTime, visibility step-start;
+        }
+
+        .bx-panel-helper__toggle {
+            transition: width @transitTime, height @transitTime;
+
+            &:before {
+                transition: all @transitTime;
+            }
+        }
+    }
+}
